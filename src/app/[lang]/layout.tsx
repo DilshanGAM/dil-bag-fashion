@@ -22,10 +22,10 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
   params,
-}: Readonly<{
+}: {
   children: React.ReactNode;
   params: { lang: "en" | "si" };
-}>) {
+}) {
   const dict = await getDictionary(params.lang)
   return (
     <html lang="en">
