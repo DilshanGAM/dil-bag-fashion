@@ -4,6 +4,7 @@ import { getDictionary } from "@/utils/intl/dictionaries";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -30,11 +31,18 @@ export default async function RootLayout({
 	const dict = await getDictionary((await params).lang);
 
 	return (
-		<html lang={(await params).lang}>
+		<html lang={(await params).lang} suppressHydrationWarning>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
 				<I18nProvider dict={dict}>{children}</I18nProvider>
+        </ThemeProvider>
 			</body>
 		</html>
 	);
