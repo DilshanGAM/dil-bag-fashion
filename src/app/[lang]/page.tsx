@@ -8,7 +8,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string}
     <div>
       <h1>{dict.home.welcome}</h1>
       <button>{dict.home.cart}</button>
-      <Link lang={(await params).lang} href={"/test"}>Test</Link>
+      <Link href={"/test"}>Test</Link>
     </div>
   )
 }
