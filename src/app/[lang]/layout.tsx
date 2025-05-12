@@ -1,3 +1,5 @@
+// src/app/[lang]/layout.tsx
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -23,6 +25,7 @@ export async function generateStaticParams() {
   return [{ lang: "en" }, { lang: "si" }];
 }
 
+// ✅ CORRECT PARAMS TYPE — NO PROMISE
 export default async function RootLayout({
   children,
   params,
@@ -30,12 +33,11 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: "en" | "si" };
 }) {
-  const dict = await getDictionary(params.lang)
+  const dict = await getDictionary(params.lang);
+
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang={params.lang}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <I18nProvider dict={dict}>{children}</I18nProvider>
       </body>
     </html>
