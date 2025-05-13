@@ -3,7 +3,7 @@ import { getDictionary } from "@/utils/intl/dictionaries";
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
@@ -33,7 +33,7 @@ export default async function RootLayout({
 	return (
 		<html lang={(await params).lang} suppressHydrationWarning>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				className={`${geistSans.variable} ${geistMono.variable} antialiased `}
 			>
         <ThemeProvider
             attribute="class"
